@@ -59,9 +59,10 @@ function liftWeights(timeLeft) {
   // .then and .catch
 async function workout(totalTime) {
   try {
-    const timeLeftAfterStretching = await runOnTreadmill(totalTime);
-    const timeLeftAfterRunning = await liftWeights(timeLeftAfterStretching);
-    console.log(`done working out with ${timeLeftAfterRunning/1000} seconds left`);
+    const timeLeftAfterStretching = await stretch(totalTime);
+    const timeLeftAfterRunning = await runOnTreadmill(timeLeftAfterStretching);
+    const timeLeftAfterLifting = await liftWeights(timeLeftAfterRunning);
+    console.log(`done working out with ${timeLeftAfterLifting/1000} seconds left`);
   } catch (err) {
     console.log(err);
   }
